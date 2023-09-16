@@ -12,9 +12,11 @@ document.querySelector('.check').addEventListener('click', function(){
     console.log(guess, typeof guess);
 
     if (!guess){
-        //then input is empty
+        //when input is empty
         document.querySelector('.message').textContent = 'No Number!';
     }
+
+
     else if (guess === secretNum){
         //when player wins
         document.querySelector('.message').textContent = 'Correct Number!';
@@ -25,12 +27,13 @@ document.querySelector('.check').addEventListener('click', function(){
             highScore = score;
             document.querySelector('.highscore').textContent = highScore;
         }
-
     }
-    else if (guess > secretNum){
-        //when guess number is greater than secret number
+
+    
+    else if (guess !== secretNum){
+        //when guess number is not equal to secret number
         if (score > 1){
-           document.querySelector('.message').textContent = 'High!';
+           document.querySelector('.message').textContent = guess > secretNum ? 'High!' : 'Low!';
         score--; 
         document.querySelector('.score').textContent = score;
         }
@@ -38,18 +41,6 @@ document.querySelector('.check').addEventListener('click', function(){
            document.querySelector('.message').textContent = 'You Lost!';
             document.querySelector('.score').textContent = 0;
         }
-    }
-    else if (guess < secretNum){
-        //when guess number is smaller than secret number
-        if (score > 1){
-            document.querySelector('.message').textContent = 'Low!';
-         score--; 
-         document.querySelector('.score').textContent = score;
-         }
-         else{
-            document.querySelector('.message').textContent = 'You Lost!';
-            document.querySelector('.score').textContent = 0;
-         }
     }
 })
 
